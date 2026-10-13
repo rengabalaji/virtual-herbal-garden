@@ -6,8 +6,7 @@ import {
   FlaskConical,
   Sparkles,
   Leaf,
-  ArrowRight,
-  CheckCircle2
+  ArrowRight
 } from 'lucide-react';
 import { LEARNING_MODULES } from '../../data/plantsData';
 
@@ -41,7 +40,7 @@ export default function LearningHubPreview({
             fontWeight: 700
           }}
         >
-          Learn • Explore • Discover
+          Learn · Explore · Discover
         </span>
 
         <h2
@@ -100,7 +99,7 @@ export default function LearningHubPreview({
 
               <div style={{ fontSize: '0.8rem', marginBottom: '1rem' }}>
                 <strong>{module.level || 'ALL LEVELS'}</strong>
-                {'  •  '}
+                {' · '}
                 {module.duration || '20 mins'}
               </div>
 
@@ -120,7 +119,15 @@ export default function LearningHubPreview({
 
               <button
                 type="button"
-                onClick={() => onOpenModule?.(module)}
+                onClick={() => {
+                  if (typeof onOpenModule === 'function') {
+                    onOpenModule(module);
+                  } else {
+                    console.error(
+                      'Module theory handler is missing in App.jsx'
+                    );
+                  }
+                }}
                 style={{
                   display: 'flex',
                   alignItems: 'center',
@@ -146,7 +153,8 @@ export default function LearningHubPreview({
       <div
         style={{
           marginTop: '3.75rem',
-          background: 'linear-gradient(135deg, var(--color-forest-deep), var(--color-emerald-deep))',
+          background:
+            'linear-gradient(135deg, var(--color-forest-deep), var(--color-emerald-deep))',
           borderRadius: '28px',
           padding: '2.5rem',
           color: '#fff',
