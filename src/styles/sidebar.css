@@ -1,0 +1,214 @@
+/* ==========================================================================
+   HerbalEdu - Sidebar Learning Dashboard Styles
+   ========================================================================== */
+
+.herbal-sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: var(--sidebar-width);
+  background-color: #12281c;
+  color: #e2ede5;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 4px 0 24px rgba(10, 24, 17, 0.25);
+  transform: translateX(-100%);
+  transition: transform var(--transition-smooth);
+  overflow-y: auto;
+  border-right: 1px solid rgba(82, 140, 106, 0.2);
+}
+
+.herbal-sidebar.is-open {
+  transform: translateX(0);
+}
+
+/* Sidebar Backdrop (for mobile or click-away) */
+.sidebar-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(14, 36, 25, 0.45);
+  backdrop-filter: blur(4px);
+  z-index: 90;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-normal);
+}
+
+.sidebar-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Sidebar Header */
+.sidebar-header {
+  padding: 1.5rem 1.4rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.sidebar-brand-box {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sidebar-brand-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, var(--color-emerald) 0%, #2f7a57 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+}
+
+.sidebar-title {
+  font-family: var(--font-serif);
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.sidebar-subtitle {
+  font-size: 0.7rem;
+  color: #8bb39c;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sidebar-close-btn {
+  color: #9abfab;
+  padding: 0.4rem;
+  border-radius: 8px;
+  transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.sidebar-close-btn:hover {
+  background: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+/* Learner Profile Progress Pill */
+.sidebar-user-progress {
+  margin: 1.25rem 1.4rem 0.5rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(120, 168, 142, 0.18);
+  border-radius: var(--radius-md);
+  padding: 1rem;
+}
+
+.progress-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #ffffff;
+  margin-bottom: 0.4rem;
+}
+
+.progress-pill-badge {
+  background: rgba(82, 140, 106, 0.35);
+  color: #a4c7b3;
+  padding: 2px 8px;
+  border-radius: var(--radius-full);
+  font-size: 0.7rem;
+}
+
+.progress-bar-bg {
+  width: 100%;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  overflow: hidden;
+  margin-top: 0.5rem;
+}
+
+.progress-bar-fill {
+  height: 100%;
+  width: 35%;
+  background: linear-gradient(90deg, #528c6a, #74c69d);
+  border-radius: 999px;
+}
+
+.progress-note {
+  font-size: 0.72rem;
+  color: #8bb39c;
+  margin-top: 0.4rem;
+}
+
+/* Sidebar Nav Navigation */
+.sidebar-nav {
+  padding: 1rem 1.15rem;
+  flex: 1;
+}
+
+.sidebar-nav-section-title {
+  font-size: 0.68rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: #6a957d;
+  margin: 1.25rem 0.5rem 0.5rem;
+}
+
+.sidebar-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.sidebar-nav-item button {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
+  color: #c7ded2;
+  font-size: 0.88rem;
+  font-weight: 500;
+  text-align: left;
+  transition: all var(--transition-fast);
+}
+
+.sidebar-nav-item button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.sidebar-nav-item.active button {
+  background: linear-gradient(90deg, rgba(46, 122, 87, 0.7) 0%, rgba(36, 94, 67, 0.4) 100%);
+  color: #ffffff;
+  font-weight: 600;
+  border-left: 3px solid #74c69d;
+}
+
+.sidebar-item-inner {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.sidebar-item-tag {
+  font-size: 0.65rem;
+  padding: 1px 6px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: #c7ded2;
+}
+
+/* Sidebar Footer */
+.sidebar-footer {
+  padding: 1.2rem 1.4rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(0, 0, 0, 0.15);
+  font-size: 0.75rem;
+  color: #8bb39c;
+}

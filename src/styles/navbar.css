@@ -1,0 +1,183 @@
+/* ==========================================================================
+   HerbalEdu - Navbar Styles
+   ========================================================================== */
+
+.herbal-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background: rgba(250, 248, 243, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--color-cream-border);
+  transition: all var(--transition-normal);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+  max-width: var(--max-content-width);
+  margin: 0 auto;
+}
+
+/* Brand Logo */
+.brand-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+  text-decoration: none;
+}
+
+.brand-icon-box {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: linear-gradient(135deg, var(--color-emerald) 0%, var(--color-forest) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(20, 53, 38, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.brand-text-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.brand-title {
+  font-family: var(--font-serif);
+  font-size: 1.45rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--color-forest-deep);
+  line-height: 1.1;
+}
+
+.brand-title span {
+  color: var(--color-emerald-light);
+}
+
+.brand-tagline {
+  font-family: var(--font-sans);
+  font-size: 0.68rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-sage-deep);
+}
+
+/* Nav Links */
+.nav-links-desktop {
+  display: flex;
+  align-items: center;
+  gap: 1.75rem;
+  list-style: none;
+}
+
+.nav-item-link {
+  font-family: var(--font-sans);
+  font-size: 0.92rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  position: relative;
+  padding: 0.4rem 0.1rem;
+  transition: color var(--transition-fast);
+}
+
+.nav-item-link:hover {
+  color: var(--color-forest-deep);
+}
+
+.nav-item-link.active {
+  color: var(--color-forest);
+  font-weight: 600;
+}
+
+.nav-item-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: var(--color-emerald);
+  border-radius: 2px;
+}
+
+/* Action Area */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-full);
+  background: var(--color-sage-soft);
+  color: var(--color-forest);
+  border: 1px solid var(--color-sage-tint);
+  font-size: 0.84rem;
+  font-weight: 600;
+  transition: all var(--transition-fast);
+}
+
+.sidebar-toggle-btn:hover {
+  background: var(--color-sage-tint);
+  color: var(--color-forest-deep);
+}
+
+.sidebar-toggle-btn.active {
+  background: var(--color-forest);
+  color: #ffffff;
+  border-color: var(--color-forest);
+}
+
+.explore-garden-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  background: linear-gradient(135deg, var(--color-emerald) 0%, var(--color-forest-deep) 100%);
+  color: #ffffff;
+  padding: 0.68rem 1.45rem;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(20, 53, 38, 0.22);
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.explore-garden-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--color-emerald-light) 0%, var(--color-forest) 100%);
+  box-shadow: 0 8px 22px rgba(20, 53, 38, 0.3);
+}
+
+/* Mobile Toggle */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  color: var(--color-forest);
+  padding: 0.5rem;
+  cursor: pointer;
+}
+
+@media (max-width: 960px) {
+  .nav-links-desktop {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+}

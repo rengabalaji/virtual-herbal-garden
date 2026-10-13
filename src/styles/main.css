@@ -1,0 +1,204 @@
+@import './theme.css';
+
+/* ==========================================================================
+   Base & Reset Styles
+   ========================================================================== */
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-cream-bg);
+  color: var(--color-text-primary);
+  line-height: 1.6;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Custom Botanical Scrollbar */
+::-webkit-scrollbar {
+  width: 9px;
+  height: 9px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-cream-surface);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-sage-mid);
+  border-radius: var(--radius-full);
+  border: 2px solid var(--color-cream-surface);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-emerald);
+}
+
+/* Typography Defaults */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-serif);
+  color: var(--color-text-title);
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+p {
+  color: var(--color-text-secondary);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utility Containers */
+.container {
+  width: 100%;
+  max-width: var(--max-content-width);
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1.75rem;
+  padding-right: 1.75rem;
+}
+
+/* Botanical Pill Badges */
+.badge-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.35rem 0.85rem;
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+}
+
+.badge-forest {
+  background-color: var(--color-sage-soft);
+  color: var(--color-forest);
+  border: 1px solid var(--color-sage-tint);
+}
+
+.badge-gold {
+  background-color: var(--color-gold-tint);
+  color: var(--color-gold-amber);
+  border: 1px solid rgba(201, 122, 20, 0.2);
+}
+
+/* Glowing Botanical Button Primary */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: linear-gradient(135deg, var(--color-emerald) 0%, var(--color-forest) 100%);
+  color: var(--color-text-light);
+  padding: 0.85rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: 0 4px 16px rgba(20, 53, 38, 0.22);
+  transition: all var(--transition-normal);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, var(--color-emerald-light) 0%, var(--color-emerald-deep) 100%);
+  box-shadow: 0 8px 24px rgba(20, 53, 38, 0.32);
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Secondary Botanical Button */
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  background: var(--color-cream-card);
+  color: var(--color-forest);
+  border: 1.5px solid var(--color-cream-border);
+  padding: 0.85rem 1.6rem;
+  border-radius: var(--radius-full);
+  font-size: 0.95rem;
+  font-weight: 600;
+  box-shadow: var(--shadow-sm);
+  transition: all var(--transition-normal);
+}
+
+.btn-secondary:hover {
+  background: var(--color-sage-soft);
+  border-color: var(--color-sage-mid);
+  color: var(--color-forest-deep);
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+/* App Layout Grid for Dashboard Drawer */
+.app-layout {
+  display: flex;
+  min-height: 100vh;
+  position: relative;
+  background-color: var(--color-cream-bg);
+}
+
+.main-content-wrapper {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  transition: margin-left var(--transition-smooth);
+}
+
+/* Soft botanical leaf animations */
+@keyframes floatGentle {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-6px) rotate(1.5deg);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.9;
+    transform: scale(1.04);
+  }
+}
+
+.animate-float {
+  animation: floatGentle 5s ease-in-out infinite;
+}

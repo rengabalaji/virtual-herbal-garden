@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#143526"/>
+      <stop offset="100%" stop-color="#0e2419"/>
+    </linearGradient>
+    <linearGradient id="leafGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#74c69d"/>
+      <stop offset="100%" stop-color="#2d6a4f"/>
+    </linearGradient>
+  </defs>
+  <rect width="600" height="400" fill="url(#bgGrad)"/>
+  <circle cx="300" cy="180" r="110" fill="#1b4733" opacity="0.6"/>
+  <!-- Stylized Botanical Leaf -->
+  <path d="M 300 70 C 370 120 380 230 300 280 C 220 230 230 120 300 70 Z" fill="url(#leafGrad)"/>
+  <path d="M 300 85 L 300 270" stroke="#d8f3dc" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M 300 130 Q 340 120 350 140" stroke="#d8f3dc" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M 300 170 Q 345 160 355 185" stroke="#d8f3dc" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M 300 210 Q 335 205 345 225" stroke="#d8f3dc" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M 300 130 Q 260 120 250 140" stroke="#d8f3dc" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M 300 170 Q 255 160 245 185" stroke="#d8f3dc" stroke-width="2" fill="none" opacity="0.7"/>
+  <path d="M 300 210 Q 265 205 255 225" stroke="#d8f3dc" stroke-width="2" fill="none" opacity="0.7"/>
+  <text x="300" y="325" fill="#e2ede5" font-family="'Playfair Display', serif" font-size="20" font-weight="600" text-anchor="middle" letter-spacing="1">HERBALEDU BOTANICAL SPECIMEN</text>
+  <text x="300" y="352" fill="#8bb39c" font-family="'Plus Jakarta Sans', sans-serif" font-size="13" text-anchor="middle">Virtual Herbal Garden Archive</text>
+</svg>
