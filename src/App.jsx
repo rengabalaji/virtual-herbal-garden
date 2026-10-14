@@ -8,7 +8,7 @@ import Footer from './components/layout/Footer';
 import LandingPage from './pages/LandingPage';
 import HerbGrid from './components/garden/HerbGrid';
 import LearningHubPreview from './components/garden/LearningHubPreview';
-import ModuleTheory from './components/garden/ModuleTheory.jsx';
+import ModuleTheory from './components/garden/moduleTheory.jsx';
 import BotanicalQuiz from './components/quiz/BotanicalQuiz';
 import PlantDetailModal from './components/garden/PlantDetailModal';
 import AuthPage from './pages/authpage';
