@@ -13,44 +13,51 @@ import { auth, setAuthPersistence } from './config';
 
 const googleProvider = new GoogleAuthProvider();
 
+// Create a new account with email and password
 export async function signUpWithEmail(name, email, password) {
   const result = await createUserWithEmailAndPassword(
     auth,
-    email,
+    email.trim(),
     password
   );
 
-  await updateProfile(result.user, {
-    displayName: name
-  });
+  if (name.trim()) {
+    await updateProfile(result.user, {
+      displayName: name.trim()
+    });
+  }
 
   return result.user;
 }
 
-export async function signInWithEmail(email, password, rememberMe = true) {
-  await setAuthPersistence(rememberMe);
+// Sign in with an existing email/password account
+export async function signInWithEmail(email, password) {
+  await setAuthPersistence();
 
   const result = await signInWithEmailAndPassword(
     auth,
-    email,
+    email.trim(),
     password
   );
 
   return result.user;
 }
 
-export async function signInWithGoogle(rememberMe = true) {
-  await setAuthPersistence(rememberMe);
+// Sign in with Google
+export async function signInWithGoogle() {
+  await setAuthPersistence();
 
   const result = await signInWithPopup(auth, googleProvider);
 
   return result.user;
 }
 
+// Reset password
 export async function resetPassword(email) {
-  return sendPasswordResetEmail(auth, email);
+  await sendPasswordResetEmail(auth, email.trim());
 }
 
+// Log out
 export async function logOut() {
-  return signOut(auth);
+  await signOut(auth);
 }

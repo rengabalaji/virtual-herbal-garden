@@ -8,7 +8,7 @@ import Footer from './components/layout/Footer';
 import LandingPage from './pages/LandingPage';
 import HerbGrid from './components/garden/HerbGrid';
 import LearningHubPreview from './components/garden/LearningHubPreview';
-import ModuleTheory from './components/garden/ModuleTheory';
+import ModuleTheory from './components/garden/ModuleTheory.jsx';
 import BotanicalQuiz from './components/quiz/BotanicalQuiz';
 import PlantDetailModal from './components/garden/PlantDetailModal';
 import AuthPage from './pages/authpage';
@@ -19,11 +19,7 @@ import { logOut } from './firebase/auth';
 import './styles/main.css';
 
 export default function App() {
-  const [activePage, setActivePage] = useState(() => {
-    const requestedPage = window.location.hash.replace('#', '');
-    return requestedPage || 'auth';
-  });
-
+  const [activePage, setActivePage] = useState('auth');
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [selectedHerb, setSelectedHerb] = useState(null);
   const [selectedModule, setSelectedModule] = useState(null);
@@ -35,19 +31,31 @@ export default function App() {
   const [authError, setAuthError] = useState('');
 
   useEffect(() => {
+    let firstAuthCheck = true;
+
     const unsubscribe = onAuthStateChanged(
       auth,
       (currentUser) => {
-        setUser(currentUser);
-        setAuthLoading(false);
+        if (firstAuthCheck) {
+          firstAuthCheck = false;
 
-        if (currentUser && window.location.hash.replace('#', '') === '') {
-          setActivePage('home');
+          // Always show the login page when the app first opens.
+          setUser(null);
+          setActivePage('auth');
+          setAuthLoading(false);
+          return;
         }
+
+        // Handle subsequent sign-in and sign-out events normally.
+        setUser(currentUser);
+        setActivePage(currentUser ? 'home' : 'auth');
+        setAuthLoading(false);
       },
       (error) => {
         console.error('Authentication state error:', error);
         setAuthError('Unable to check your account. Please refresh the page.');
+        setUser(null);
+        setActivePage('auth');
         setAuthLoading(false);
       }
     );
@@ -56,38 +64,50 @@ export default function App() {
   }, []);
 
   const navigateTo = (page) => {
+    if (!user) {
+      setActivePage('auth');
+      return;
+    }
+
     setActivePage(page);
     window.history.replaceState(null, '', `#${page}`);
     setIsSidebarOpen(false);
     window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
-  const handleLogin = () => {
+  const handleAuthSuccess = (signedInUser) => {
+    setUser(signedInUser);
     setAuthError('');
-    navigateTo('auth');
-  };
+    setActivePage('home');
 
-  const handleOpenProfile = () => {
-    navigateTo(user ? 'profile' : 'auth');
+    window.history.replaceState(null, '', '#home');
+    window.scrollTo({ top: 0, behavior: 'auto' });
   };
 
   const handleLogout = async () => {
     try {
       await logOut();
+
       setUser(null);
-      setAuthError('');
+      setSelectedHerb(null);
       setSelectedModule(null);
-      navigateTo('auth');
+      setAuthError('');
+      setActivePage('auth');
+
+      window.history.replaceState(null, '', window.location.pathname);
     } catch (error) {
       console.error('Logout error:', error);
       window.alert('Unable to log out. Please try again.');
     }
   };
 
-  const handleAuthSuccess = (signedInUser) => {
-    setUser(signedInUser);
+  const handleLogin = () => {
     setAuthError('');
-    navigateTo('home');
+    setActivePage('auth');
+  };
+
+  const handleOpenProfile = () => {
+    navigateTo('profile');
   };
 
   const handleSidebarSelect = (tabId) => {
@@ -153,13 +173,9 @@ export default function App() {
     );
   }
 
-  if (activePage === 'auth') {
-    return (
-      <AuthPage
-        onSuccess={handleAuthSuccess}
-        onBack={() => navigateTo('home')}
-      />
-    );
+  // Require login before accessing the garden.
+  if (!user || activePage === 'auth') {
+    return <AuthPage onSuccess={handleAuthSuccess} />;
   }
 
   return (

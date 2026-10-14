@@ -37,13 +37,15 @@ export default function AuthPage({ onSuccess }) {
         'auth/invalid-email':
           'Please enter a valid email address.',
         'auth/invalid-credential':
-          'Email or password is incorrect.',
+          'Email or password is incorrect. If you are new, create an account first.',
         'auth/user-not-found':
           'No account found. Please create an account first.',
         'auth/wrong-password':
           'Incorrect password. Please try again.',
         'auth/weak-password':
           'Please use a stronger password (at least 6 characters).',
+        'auth/account-not-created':
+          'Please create an account before signing in with Google.',
         'auth/popup-closed-by-user':
           'Google sign-in was cancelled.',
         'auth/unauthorized-domain':
@@ -89,12 +91,12 @@ export default function AuthPage({ onSuccess }) {
     }
 
     return runAuth(() =>
-      signInWithEmail(email.trim(), password, rememberMe)
+      signInWithEmail(email.trim(), password)
     );
   };
 
   const handleGoogle = () => {
-    runAuth(() => signInWithGoogle(rememberMe));
+    runAuth(() => signInWithGoogle());
   };
 
   const changeMode = (nextMode) => {
@@ -236,7 +238,6 @@ export default function AuthPage({ onSuccess }) {
               <span>Email address</span>
               <div className="auth-input-wrap">
                 <Mail size={18} />
-
                 <input
                   type="email"
                   value={email}
@@ -254,7 +255,6 @@ export default function AuthPage({ onSuccess }) {
 
                 <div className="auth-input-wrap">
                   <Lock size={18} />
-
                   <input
                     type={showPassword ? 'text' : 'password'}
                     value={password}

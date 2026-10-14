@@ -1,6 +1,10 @@
 
 import { initializeApp } from 'firebase/app';
-import { getAuth, setPersistence, browserLocalPersistence, browserSessionPersistence } from 'firebase/auth';
+import {
+  getAuth,
+  setPersistence,
+  browserSessionPersistence
+} from 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBwE3Vaeo4Pr8rYccstheTm6eQ9cz7Im00",
@@ -15,10 +19,7 @@ const app = initializeApp(firebaseConfig);
 
 export const auth = getAuth(app);
 
-export const setAuthPersistence = (rememberMe) =>
-  setPersistence(
-    auth,
-    rememberMe ? browserLocalPersistence : browserSessionPersistence
-  );
+export const setAuthPersistence = () =>
+  setPersistence(auth, browserSessionPersistence);
 
 export default app;
